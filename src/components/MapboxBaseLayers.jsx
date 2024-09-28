@@ -14,7 +14,7 @@ export default class MapboxBaseLayers extends React.Component {
         'bright',
         'light',
         'satellite',
-      ] : ['OSM', 'OSMB', 'TONER', 'STAMEN']),
+      ] : ['OSM', 'OSMB', 'TONER', 'STADIA']),
       selected: props.dark ? "dark" : "streets"
     }
   }
@@ -31,7 +31,9 @@ export default class MapboxBaseLayers extends React.Component {
         values={
           bases.map(e => ({ id: e, value: e }))
         }
+        value={selected && selected[0] && selected[0].value}
         onSelectCallback={(selected) => {
+          console.log(selected)
           if (selected && selected.length) {
             this.setState({ selected: selected[0].value });
             typeof (onSelectCallback) === 'function' &&

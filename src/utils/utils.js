@@ -519,10 +519,10 @@ const getMin = (arr) => {
 
 const getOSMTiles = (name) => {
   const TILES = {
-    OSM: "http://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    OSMB: "http://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    TONER: "http://tile.stamen.com/toner/{z}/{x}/{y}.png",
-    STAMEN: 'https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg'
+    OSM: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    OSMB: "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    TONER: "https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.{ext}",
+    STADIA: 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.{ext}'
   }
   return ({
     "version": 8,
@@ -530,7 +530,7 @@ const getOSMTiles = (name) => {
       "simple-tiles": {
         "type": "raster",
         "tiles": [
-          TILES[name] || TILES["STAMEN"]
+          TILES[name] || TILES["OSM"]
         ],
         "tileSize": 256
       }
@@ -696,7 +696,7 @@ const iWithFaName = (faName, onClick, style, title) => <i
   title={title}></i>
 
 const isArrayNumeric = (array) => {
-  if(!isArray(array)) return null
+  if (!isArray(array)) return null
   let isNumeric = true;
   array.forEach(e => {
     if (!isNumber(e)) {
